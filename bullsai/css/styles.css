@@ -55,9 +55,7 @@ nav img{
     width: 40%;
     color: #fff;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(25%,-40%);
+    transform: translate(25%, 40%);
     text-align: center;
 }
 .text-box h1{
@@ -217,6 +215,14 @@ h3{
     width: 80px;
     height: 80px;
 }
+[class*="services-chart-"] {
+    width: 40%;
+    margin: auto;
+    text-align: center;
+}
+[class*="services-chart-"] h2 {
+    margin: 2rem 0;
+}
 @media(max-width: 700px){
     .row{
         flex-direction: column;
@@ -230,6 +236,9 @@ h3{
     .services-col h3{
         font-weight: 600;
         margin: 10px;
+    }
+    [class*="services-chart-"] {
+        width: 80%;
     }
 }
 /*******************Locations section Home*********************/

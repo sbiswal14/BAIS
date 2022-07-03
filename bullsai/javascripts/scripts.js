@@ -102,3 +102,59 @@ function setSuccessFor(){
     formControl.className = 'form-control-success';
 } 
 
+const chartFunc = () => {
+    const canvasEl = [
+        {
+            id: 'chartPolar',
+            type: 'polarArea',
+            data: {
+                labels: ['Mumbai', 'Tampa', 'London', 'Seoul', 'New York'],
+                datasets: [{
+                    label: 'No. of Clients',
+                    data: [15, 12, 10, 16, 14],
+                    backgroundColor: [
+                        'rgba(255, 99, 132)',
+                        'rgba(54, 162, 235)',
+                        'rgba(255, 206, 86)',
+                        'rgba(75, 192, 192)',
+                        'rgba(153, 102, 255)'
+                    ]
+                }]
+            },
+            options: ''
+        },
+        {
+            id: 'chartLine',
+            type: 'line',
+            data: {
+                labels: ['Facebook', 'Amazon', 'Apple', 'Netflix', 'Google', 'Microsoft', 'Oracle', 'Adobe'],
+                datasets: [{
+                    label: 'Growth of clients',
+                    data: [67, 80, 85, 60, 75, 72, 78, 85],
+                    fill: false,
+                    borderColor: 'rgba(153, 102, 255)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        suggestedMin: 50,
+                        suggestedMax: 90
+                    }
+                }
+            }
+        }];
+    canvasEl.forEach((el) => {
+        const domEl = document.getElementById(el.id).getContext('2d');
+        const chart = new Chart(domEl, {
+            type: el.type,
+            data: el.data,
+            options: el.options
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    chartFunc();
+});
