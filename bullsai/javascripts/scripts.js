@@ -28,12 +28,12 @@ function validate_login(){
     
     var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
     var letters = /^[A-Za-z]+$/;
-    var alphanums = /^[A-Za-z]+[0-9]+$/;
+    var alphanums = /^[A-Za-z0-9]+$/;
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if(luname === '' | luname == null){alert('Enter user name');}
     else if(!alphanums.test(luname)){alert('User name field required only alphabets and digits');}
-    else if(lpass === '' | lpass == null){alert('Eneter password');}
+    else if(lpass === '' | lpass == null){alert('Enter password');}
     else if(!pwd_expression.test(lpass)){alert ('Minimun 1 upper case, 1 lower case, 1 special character and 1 Numeric are required in Password');}
     else if(lpass.length < 8){alert ('Password minimum length is 8');}
     else if(lpass.length > 12){alert ('Password maximum length is 12');}
@@ -50,7 +50,7 @@ function validate_registration(){
 
     var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
     var letters = /^[A-Za-z]+/;
-    var alphanums = /^[A-Za-z]+[0-9]+$/;
+    var alphanums = /^[A-Za-z0-9]+$/;
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if(rname === '' | rname == null){alert('Please enter full Name');}
