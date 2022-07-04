@@ -29,11 +29,11 @@
     <section class="send-mail">
         <div class="contact-form">
             <form ation="">
-                <input type="text" placeholder="Enter your name" required>
-                <input type="email" placeholder="Enter email address" required>
-                <input type="text" placeholder="Enter subject" required><br>
-                <textarea rows="8" placeholder="Message" required></textarea><br><br>
-                <button type="submit" class="red-btn">Send Message</button>
+                <input id="mname" type="text" placeholder="Enter your name" required>
+                <input id="memail" type="email" placeholder="Enter email address" required>
+                <input id="msub" type="text" placeholder="Enter subject" required><br>
+                <textarea id="mtext" rows="8" placeholder="Message" required></textarea><br><br>
+                <button type="button" class="red-btn-mail" onclick="sendMail()">Send Message</button>
             </form>
         </div>
     </section><br><br><br><br>
@@ -46,7 +46,7 @@
             <a href="https://www.linkedin.com" target="_blank"><img src="images/linkedin.png"></a> 
         </div>
         <div class="icon-copyright">
-            <img src="images/copyright.png">BullsAI 2022</i>
+            <img src="images/copyright.png"><span>BullsAI 2022</span>
         </div>
     </section>
 </body>

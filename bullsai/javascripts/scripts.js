@@ -43,10 +43,10 @@ function validate_login(){
 function validate_registration(){
     var form=document.getElementById('RegForm');
     var rname=document.getElementById("r_name").value;
-    const runame=document.getElementById("r_uname").value;
-    const ruemail=document.getElementById("r_email").value;
-    const rupass=document.getElementById("r_pass").value;
-    const rupass1=document.getElementById("r_pass_1").value;
+    var runame=document.getElementById("r_uname").value;
+    var ruemail=document.getElementById("r_email").value;
+    var rupass=document.getElementById("r_pass").value;
+    var rupass1=document.getElementById("r_pass_1").value;
 
     var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
     var letters = /^[A-Za-z]+/;
@@ -67,9 +67,38 @@ function validate_registration(){
     else if(rupass.length > 12){alert ('Password maximum length is 12');}
     else{window.location.reload();alert('Thank You for Registration!!!');}
 }
- function message_post(){
-    window.location.reload();
-    alert('Your message is sent. Thanks for contacting us.');
+function message_post(){
+    var cname=document.getElementById("cname").value;
+    var cemail=document.getElementById("cemail").value;
+    var ctext=document.getElementById("ctext").value;
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    
+    if(cname.length > 0 & ctext.length > 0 & filter.test(cemail)){
+        window.location.reload();
+        alert('Your message is sent. Thanks for contacting us.');
+    }
+    else{
+        alert('Please provide valid mail id, name, and comments');
+    }
+   
+    
+ }
+function sendMail(){
+    var mname=document.getElementById("mname").value;
+    var memail=document.getElementById("memail").value;
+    var mtext=document.getElementById("mtext").value;
+    var msub=document.getElementById("msub").value;
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    
+    if(mname.length > 0 & mtext.length > 0 & filter.test(memail)){
+        window.location.reload();
+        alert('Your message is sent. Thanks for contacting us.');
+    }
+    else{
+        alert('Please provide valid mail id, name, and message');
+    }
+   
+    
  }
 /*
         let messages = []
@@ -102,59 +131,143 @@ function setSuccessFor(){
     formControl.className = 'form-control-success';
 } 
 
-const chartFunc = () => {
-    const canvasEl = [
-        {
-            id: 'chartPolar',
-            type: 'polarArea',
-            data: {
-                labels: ['Mumbai', 'Tampa', 'London', 'Seoul', 'New York'],
-                datasets: [{
-                    label: 'No. of Clients',
-                    data: [15, 12, 10, 16, 14],
-                    backgroundColor: [
-                        'rgba(255, 99, 132)',
-                        'rgba(54, 162, 235)',
-                        'rgba(255, 206, 86)',
-                        'rgba(75, 192, 192)',
-                        'rgba(153, 102, 255)'
-                    ]
-                }]
+function clientChart() {
+    new Chart(document.getElementById("doughnut-chart"), {
+      type: "doughnut",
+      data: {
+        labels: [
+          "Asia",
+          "Europe",
+          "Middle East",
+          "America",
+        ],
+        datasets: [
+          {
+            label: "",
+            backgroundColor: [
+              "#7B68EE",
+              "#DAA520",
+              "#8B008B",
+              "#C71585",
+            ],
+            data: [40, 54, 32, 66],
+            hoverOffset: 6,
+            datalabels: {
+              color: "white",
+              font: {
+                weight: "bold",
+              },
             },
-            options: ''
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          tooltip: {
+            enabled: false,
+          },
         },
-        {
-            id: 'chartLine',
-            type: 'line',
-            data: {
-                labels: ['Facebook', 'Amazon', 'Apple', 'Netflix', 'Google', 'Microsoft', 'Oracle', 'Adobe'],
-                datasets: [{
-                    label: 'Growth of clients',
-                    data: [67, 80, 85, 60, 75, 72, 78, 85],
-                    fill: false,
-                    borderColor: 'rgba(153, 102, 255)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        suggestedMin: 50,
-                        suggestedMax: 90
-                    }
-                }
-            }
-        }];
-    canvasEl.forEach((el) => {
-        const domEl = document.getElementById(el.id).getContext('2d');
-        const chart = new Chart(domEl, {
-            type: el.type,
-            data: el.data,
-            options: el.options
-        });
+        title: {
+          display: true,
+          text: "Number of clients we serve",
+        },
+      },
+      plugins: [ChartDataLabels],
     });
+  }
+
+function growthChart() {
+  var xValues = [
+    "Newgen",
+    "Foxbrite",
+    "Tribble",
+    "Dominix",
+    "Archtek",
+  ];
+  var yValues = [80, 68, 58, 54, 50];
+  var barColors = [
+    "rgb(255, 160, 122)",
+    "rgb(255, 105, 180)",
+    "rgb(255, 127, 80)",
+    "rgb(240, 230, 140)",
+    "rgb(218, 112, 214)",
+  ];
+
+  new Chart("barChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          backgroundColor: barColors,
+          data: yValues,
+          label: "Newgen has got the best of us",
+          datalabels: {
+            color: "gray",
+            font: {
+              weight: "bold",
+            },
+          },
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          enabled: false,
+        },
+      },
+      legend: { display: false },
+      title: {
+        display: true,
+        text: "Top 5 clients",
+      },
+    },
+    plugins: [ChartDataLabels],
+  });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    chartFunc();
-});
+function revenue(){
+    new Chart(document.getElementById("revenue-chart"), {
+        type: 'line',
+        data: {
+          labels: [2017,2018,2019,2020,2021],
+          datasets: [{ 
+              data: [5,12,30,70,110],
+              label: "Asia",
+              borderColor: "#3e95cd",
+              fill: false
+            }, { 
+              data: [2,8,15,40,75],
+              label: "Europe",
+              borderColor: "#8e5ea2",
+              fill: false
+            }, { 
+              data: [4,7,10,20,45],
+              label: "Middle East",
+              borderColor: "#3cba9f",
+              fill: false
+            }, { 
+              data: [12,30,45,30,80],
+              label: "America",
+              borderColor: "#e8c3b9",
+              fill: false
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Our revenue for last 5 years (in USD millions)'
+          }
+        }
+      });
+}
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (document.querySelector(".charts")) {
+      clientChart();
+      growthChart();
+      revenue();
+    }
+  });
