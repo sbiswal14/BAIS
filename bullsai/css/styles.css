@@ -97,7 +97,8 @@ nav .menu {
     .text-box{
         width: 70%;
         transform: translate(-50%,-50%);
-        margin-top: 30% ;
+        margin-top: 35% ;
+        margin-left: 50%;
     }
     .text-box h1{
         font-size: 15px;
